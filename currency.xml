@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+          <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@string='Accounting']" position="inside">
+
+                     <field name="currency_list" />
+
+                </xpath>
+
+            </field>
+         </record>
+         <record id="product_template_formtree_view" model="ir.ui.view">
+         <field name="model">currency.list</field>
+         <field name="name">currency.list.tree</field>
+         <field name="type">tree</field>
+         <field name="arch" type="xml">
+                  <tree string="Accounting"  editable="bottom">
+
+                                <field name="currency" widget="selection" on_change="onchange_currency(currency)"/>
+
+                                <field name="price" />
+                  </tree>
+        </field>
+        </record>
+
+
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                    <field name="currency_id" position="replace">
+                        <field name="currency_id" on_change="onchange_update(currency_id)"/>
+                    </field>
+                    <!--<field name="price_unit" position="attribute">-->
+                    <!--<attributes name="context">'default_price_unit': curr_list.price</attributes>-->
+<!--/-->
+     <!--/               </field>-->
+
+
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
+
+
+
+
+
